@@ -2,7 +2,10 @@ from tkinter import *
 import tkinter
 import webbrowser
 import random
+import pygame
 from PIL import Image, ImageTk
+
+pygame.mixer.init()
 
 def rgb_to_hex(r, g, b):
     return '#{:02x}{:02x}{:02x}'.format(r, g, b)
@@ -12,25 +15,32 @@ def get_text_color(r, g, b):
     return "black" if luminance > 0.5 else "white"
 
 def button1_action():
+    pygame.mixer.music.load("Githuba.mp3")  # Load your sound file
+    pygame.mixer.music.play()
     webbrowser.open('https://github.com/')
 def button2_action():
+    pygame.mixer.music.load("Okul.mp3")  # Load your sound file
+    pygame.mixer.music.play()
     webbrowser.open('https://bahcelievleradnanmenderes.meb.k12.tr/')
 
 def button3_action():
+    pygame.mixer.music.load("yout.mp3")  # Load your sound file
+    pygame.mixer.music.play()
     webbrowser.open("https://www.youtube.com/@adnanmenderesand.lisesi2937")
 
 def button4_action():
+    pygame.mixer.music.load("Insta.mp3")  # Load your sound file
+    pygame.mixer.music.play()
     webbrowser.open("https://www.instagram.com/adnan_menderes_al1989/")
 def button5_action():
-    print("Button 5 clicked")
-
+    webbrowser.open("https://tr.wikipedia.org/wiki/Nejat_%C4%B0%C5%9Fler")
 def button6_action():
-    print("Button 6 clicked")
+    window.destroy()
 
-texts= ["GitHub", "Site", "Youtube", "Instagram", "Buton 5", "Buton 6"]
+texts= ["GitHub", "Okulun Sitesi", "Youtube", "Instagram", "Anlayana...", "Çıkış"]
 
 window=tkinter.Tk()
-window.attributes('-fullscreen', True) # Make the window fullscreen
+window.attributes('-fullscreen', True)
 window.config(background="grey")
 
 buttons = []
@@ -46,19 +56,18 @@ for i in range(1,6+1):
                     pady=5,
                     command=button_functions[i-1],
                     font=("Arial", 10))
+    if i == 6:
+        button.configure(background="red")
     if(i<=3):
         button.place(x=100, y=200*i)
     else:
         button.place(x=1100, y=200*(i-3))
     buttons.append(button)
 
-# Load the image
 image = Image.open("foto.png")
-# Resize the image
 image = image.resize((500, 500))
 photo = ImageTk.PhotoImage(image)
 
-# Display the image in the middle
 label = Label(window, image=photo)
 label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
